@@ -29,18 +29,20 @@
 # first version released
 # this is a BETA script, so it may not work as expected and may destroy the world, including your computer..use at your own risk.
 
-#User Editable Variables
-# please edit the following variable if you want to download the source files to somewhere other than below
-# the script will have told you about this if you wanted to change the location, that's why your reading this ;)
+# Default variables
 INSTALL="/usr/local/src"
 # location of log file
 LOG=/var/log/ffmpegin.log
 #ffmpeg extra dependencies
-DEP_EXTRAS="librtmp-dev"
+DEP_EXTRAS=""
 #ffmpeg extra configurations
-FFMPEG_EXTRAS="--enable-librtmp"
+FFMPEG_EXTRAS=""
 # location of the script's lock file
 LOCK="/var/run/ffmpegin.pid"
+#User configuration file
+USER_CONFIG="./config.sh"
+
+[ -e $USER_CONFIG ] && source $USER_CONFIG
 
 ########################################
 # do not edit anything beyond this line, unless you know what you are doing
@@ -560,13 +562,13 @@ echo
 echo "This script downloads the source files to:"
 echo "$INSTALL"
 read -p "Is this ok (y/n)?"
-[ "$REPLY" == y ] || die "exiting. Please edit the script changing the INSTALL variable to the location of your choice."
+[ "$REPLY" == y ] || die "exiting. Please edit '$USER_CONFIG' changing the INSTALL variable to the location of your choice."
 echo
 
 echo "This script logs to:"
 echo "$LOG"
 read -p "Is this ok (y/n)?"
-[ "$REPLY" == y ] || die "exiting. Please edit the script changing the LOG variable to the location of your choice."
+[ "$REPLY" == y ] || die "exiting. Please edit '$USER_CONFIG' changing the LOG variable to the location of your choice."
 echo
 
 # ok, already, last check before proceeding
@@ -638,8 +640,4 @@ echo "That's it, all done."
 echo "exiting now, bye."
 echo "Remember to run ffmpegup.sh to update the install on occassion ;)"
 exit 
-
-
-
-
 
