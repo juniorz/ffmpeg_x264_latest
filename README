@@ -1,0 +1,5 @@
+FFMPEG + libx264 automatic install (from source)
+
+Changes: Allows to enable custom modules in the ffmpeg build process (i.e. lib-rtmp)
+
+Original script: http://code.google.com/p/x264-ffmpeg-up-to-date/
